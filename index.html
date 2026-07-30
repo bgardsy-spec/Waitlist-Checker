@@ -375,6 +375,21 @@
       '<button class="btn-exit" onclick="window.close()">EXIT</button>';
   }
 
+  // Provisional pass: the exact street/postal could not be located (e.g. a new
+  // subdivision not yet on the map), but the TOWN is within our jurisdiction.
+  // Let the applicant proceed; residency is verified against the Driver's
+  // Licence at the application stage. Amber, never the red EXIT screen.
+  function showProvisional(box, url){
+    box.className='status eligible';
+    box.style.borderLeft='6px solid #d99a00';
+    box.innerHTML=
+      '<div class="status-header"><div class="status-icon">&#9989;</div><div class="status-title">Your Town Is In Our Area</div></div>'+
+      '<div class="status-body">Your town is within <strong>Local 120\'s jurisdiction</strong>, but we couldn\'t confirm your exact street address automatically (this is common for newer addresses). '+
+      '<strong>You may join the waitlist.</strong> Your exact address is verified when applications open.</div>'+
+      '<a class="btn-proceed" href="'+url+'" target="_blank">JOIN THE WAITLIST &#8594;</a>'+
+      '<div class="status-note">When applications open, you will complete a second address verification against your Driver\'s Licence.</div>';
+  }
+
   function val(id){ return document.getElementById(id).value.trim(); }
 
   window.checkAddress=function(){
@@ -415,19 +430,59 @@
     if(postalClean.length===6) postalClean=postalClean.slice(0,3)+' '+postalClean.slice(3);
     var q=streetNumber+' '+streetName+', '+city+', Ontario '+postalClean+', Canada';
 
+    // Prefill the waitlist form (252584223276257) so the applicant does not
+    // retype anything. Shared by the eligible and provisional paths.
+    function buildWaitlistUrl(){
+      var params = [
+        ['address[addr_line1]', streetNumber + ' ' + streetName],
+        ['address[city]', city],
+        ['address[state]', 'Ontario'],
+        ['address[postal]', postalClean],
+        ['address[country]', 'Canada']
+      ];
+      if(unit)      params.push(['address[addr_line2]', unit]);
+      if(firstName) params.push(['name[first]', firstName]);
+      if(lastName)  params.push(['name[last]', lastName]);
+      if(email)     params.push(['email', email]);
+      if(phone)     params.push(['phoneNumber[full]', phone.replace(/\D/g,'')]);
+      return WAITLIST_URL + '?' + params.map(function(p){
+        return p[0] + '=' + encodeURIComponent(p[1]);
+      }).join('&');
+    }
+
+    function geo(query){
+      return fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q='+encodeURIComponent(query)+'&countrycodes=ca',
+        {headers:{'Accept-Language':'en','User-Agent':'LU120/1.0'}}).then(function(r){return r.json();});
+    }
+
+    // Exact address missed: fall back to the town alone. Town in-area -> proceed
+    // provisionally (verified against the licence later); town out -> a real
+    // decline; town will not resolve either -> the normal not-found message.
+    function townFallback(){
+      geo(city+', Ontario, Canada').then(function(data){
+        if(!data||!data.length){
+          box.className='status error';
+          box.innerHTML='<strong>Address not found.</strong><br>Please check your street name, city, and postal code. If the problem continues, contact the Training Centre at (519) 453-3330.';
+          btn.disabled=false; return;
+        }
+        var lat=parseFloat(data[0].lat), lng=parseFloat(data[0].lon);
+        if(pip([lng,lat],POLY) && !isExcluded(data[0].display_name)) showProvisional(box, buildWaitlistUrl());
+        else showIneligible(box);
+        btn.disabled=false;
+      }).catch(function(){
+        box.className='status error';
+        box.innerHTML='<strong>Something went wrong.</strong><br>Please check your internet connection and try again.';
+        btn.disabled=false;
+      });
+    }
+
     btn.disabled=true;
     box.className='status checking';
     box.innerHTML='<span class="spinner"></span> Checking your address...';
 
-    fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q='+encodeURIComponent(q)+'&countrycodes=ca',
-      {headers:{'Accept-Language':'en','User-Agent':'LU120/1.0'}})
-    .then(function(r){return r.json();})
+    geo(q)
     .then(function(data){
-      if(!data||!data.length){
-        box.className='status error';
-        box.innerHTML='<strong>Address not found.</strong><br>Please check your street name, city, and postal code. If the problem continues, contact the Training Centre at (519) 453-3330.';
-        return;
-      }
+      if(!data||!data.length){ townFallback(); return; }
       var lat=parseFloat(data[0].lat),
           lng=parseFloat(data[0].lon),
           displayName=data[0].display_name;
@@ -440,28 +495,7 @@
       var eligible  = inPolygon && !excluded;
 
       if(eligible){
-        // Prefill the waitlist form (252584223276257) so the applicant does not
-        // retype anything. Address -> visible Address field (unique name "address"),
-        // sub-fields addr_line1/addr_line2/city/state/postal/country. Optional
-        // name/email/phone -> name[first]/name[last] (qid 1), email (qid 2),
-        // phoneNumber[full] (qid 24, masked -> digits only).
-        var params = [
-          ['address[addr_line1]', streetNumber + ' ' + streetName],
-          ['address[city]', city],
-          ['address[state]', 'Ontario'],
-          ['address[postal]', postalClean],
-          ['address[country]', 'Canada']
-        ];
-        if(unit)      params.push(['address[addr_line2]', unit]);
-        if(firstName) params.push(['name[first]', firstName]);
-        if(lastName)  params.push(['name[last]', lastName]);
-        if(email)     params.push(['email', email]);
-        if(phone)     params.push(['phoneNumber[full]', phone.replace(/\D/g,'')]);
-
-        var url = WAITLIST_URL + '?' + params.map(function(p){
-          return p[0] + '=' + encodeURIComponent(p[1]);
-        }).join('&');
-
+        var url = buildWaitlistUrl();
         box.className='status eligible';
         box.innerHTML=
           '<div class="status-header"><div class="status-icon">&#9989;</div><div class="status-title">Within Jurisdiction</div></div>'+
