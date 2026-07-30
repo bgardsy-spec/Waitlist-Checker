@@ -352,9 +352,17 @@
     return inside;
   }
 
+  // Collapse Saint / St / Ste and drop periods so "St Marys", "St. Marys" and
+  // "Saint Marys" all compare equal, in both the input and the exclusion list.
+  function normSaint(s){
+    return String(s||'').toLowerCase()
+      .replace(/\bsaint\b/g,'st').replace(/\bste\b/g,'st')
+      .replace(/\./g,'').replace(/\s+/g,' ').trim();
+  }
+
   function isExcluded(name){
-    var low=name.toLowerCase();
-    for(var i=0;i<EXCL.length;i++) if(low.indexOf(EXCL[i])!==-1) return true;
+    var low=normSaint(name);
+    for(var i=0;i<EXCL.length;i++) if(low.indexOf(normSaint(EXCL[i]))!==-1) return true;
     return false;
   }
 
