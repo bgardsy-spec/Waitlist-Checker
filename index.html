@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IBEW Local 120 — Jurisdiction Check</title>
+<title>IBEW Local 120 - Apprenticeship Application</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap');
 
@@ -39,21 +39,29 @@
 
   .logo-wrap {
     width: 62px; height: 62px;
-    border-radius: 50%;
-    background: #fff;
-    padding: 4px;
-    flex-shrink: 0;
+    border-radius: 50%; background: #fff;
+    padding: 4px; flex-shrink: 0;
     box-shadow: 0 0 0 3px #ffb816;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    display: flex; align-items: center;
+    justify-content: center; overflow: hidden;
   }
 
   .logo-fallback {
     font-family: 'Oswald', Arial, sans-serif;
     font-size: 11px; font-weight: 700;
     color: #261b2b; text-align: center; line-height: 1.2;
+  }
+
+  .step-badge {
+    margin-left: auto;
+    background: rgba(255,184,22,0.15);
+    border: 1px solid rgba(255,184,22,0.4);
+    color: #ffb816;
+    font-family: 'Oswald', Arial, sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 5px 12px; border-radius: 20px;
+    white-space: nowrap;
   }
 
   .header-text h1 {
@@ -72,9 +80,21 @@
 
   .intro {
     font-size: 14px; color: #b0c8b8;
-    line-height: 1.6; margin-bottom: 24px; text-align: center;
+    line-height: 1.6; margin-bottom: 20px; text-align: center;
   }
   .intro strong { color: #ffffff; }
+
+  .notice {
+    background: rgba(255,184,22,0.08);
+    border: 1px solid rgba(255,184,22,0.25);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+  .notice strong { color: #ffb816; }
 
   .counties {
     display: flex; gap: 8px;
@@ -107,8 +127,7 @@
     width: 100%;
     background: rgba(255,255,255,0.06);
     border: 2px solid rgba(255,184,22,0.3);
-    border-radius: 8px;
-    padding: 12px 14px;
+    border-radius: 8px; padding: 12px 14px;
     font-family: 'Source Sans 3', Arial, sans-serif;
     font-size: 14px; color: #ffffff; outline: none;
     transition: border-color 0.2s;
@@ -137,7 +156,9 @@
   .status.checking { display: block; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); text-align: center; color: #b0c8b8; font-size: 14px; }
   .status.eligible { display: block; background: rgba(32,129,76,0.15); border: 2px solid #20814c; }
   .status.ineligible { display: block; background: rgba(204,51,51,0.12); border: 2px solid #cc3333; }
-  .status.error { display: block; background: rgba(255,140,0,0.1); border: 2px solid rgba(255,140,0,0.4); text-align: center; color: #ffaa44; font-size: 13.5px; line-height: 1.5; }
+  .status.error { display: block; background: rgba(255,140,0,0.1); border: 2px solid rgba(255,140,0,0.4); color: #ffaa44; font-size: 13.5px; line-height: 1.6; }
+  .status.error strong { color: #ffc94d; }
+  .status.error .found-line { display: block; margin-top: 8px; font-size: 12px; color: rgba(255,255,255,0.45); font-style: italic; }
 
   .status-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
   .status-icon { font-size: 28px; flex-shrink: 0; }
@@ -166,8 +187,7 @@
   .btn-exit {
     display: block; width: 100%;
     background: rgba(204,51,51,0.2); color: #ff8080;
-    border: 2px solid rgba(204,51,51,0.4); border-radius: 8px;
-    padding: 12px;
+    border: 2px solid rgba(204,51,51,0.4); border-radius: 8px; padding: 12px;
     font-family: 'Oswald', Arial, sans-serif;
     font-size: 14px; font-weight: 700; letter-spacing: 1px;
     text-transform: uppercase; text-align: center;
@@ -194,15 +214,21 @@
       <div class="logo-fallback">IBEW<br>120</div>
     </div>
     <div class="header-text">
-      <h1>Jurisdiction Check</h1>
-      <p>IBEW Local 120 — Apprenticeship Waitlist</p>
+      <h1>Address Verification</h1>
+      <p>IBEW Local 120 - Apprenticeship Application</p>
     </div>
+    <div class="step-badge">Step 1 of 2</div>
   </div>
 
   <div class="body">
     <p class="intro">
-      To join our waitlist, you must <strong>currently reside</strong> within Local 120's jurisdiction. Enter your address below to confirm eligibility before proceeding.
+      Confirm your <strong>current residential address</strong> is within Local 120's jurisdiction before proceeding to the application form.
     </p>
+
+    <div class="notice">
+      <strong>Address must match your Driver's Licence.</strong> Moving to the area does not qualify - current residency is required at the time of application.
+    </div>
+
     <div class="counties">
       <span class="county-tag">Middlesex</span>
       <span class="county-tag">Elgin</span>
@@ -210,7 +236,7 @@
       <span class="county-tag">Huron</span>
     </div>
 
-    <div class="field-label">Your Details <span class="opt">(optional &mdash; saves retyping on the waitlist form)</span></div>
+    <div class="field-label">Your Details <span class="opt">(optional &mdash; saves retyping on the application)</span></div>
     <div class="addr-grid">
       <div class="fld">
         <label class="fld-label" for="firstName">First Name</label>
@@ -267,12 +293,20 @@
 
 <script>
 (function(){
-  var WAITLIST_URL = 'https://form.jotform.com/252584223276257';
+  var APPLICATION_URL = 'https://form.jotform.com/243385861230254';
 
-  // Municipalities explicitly outside jurisdiction.
-  // NOTE: This list is checked against Nominatim's geocoded display_name ONLY —
-  // never against the raw typed address, to avoid street-name false positives
-  // (e.g. "Palmerston Place" in London triggering "palmerston" exclusion).
+  // Every postal code inside the boundary starts with one of these letters
+  // (N = Southwestern Ontario). A code starting with anything else is out of
+  // area on its own. Keep in sync with config/local_120.json
+  // jurisdiction.postal_prefixes on the platform (jurisdiction.js carries the
+  // same list as postalPrefixes).
+  var POSTAL_PREFIXES = ['N'];
+
+  // Exclusion list - checked ONLY against locality-level fields of the
+  // geocoded result (city / town / village / municipality / county / district).
+  // NEVER checked against display_name or road names, because display_name
+  // includes the street name: "47 Paisley Avenue, London" would otherwise
+  // match the excluded village of Paisley and reject a valid London address.
   var EXCL=[
     'sarnia','point edward','corunna','mooretown','petrolia','oil springs',
     'oil city','florence','inwood','sombra','port lambton','courtright',
@@ -352,18 +386,175 @@
     return inside;
   }
 
+  // Build a locality string from settlement-level fields only. Road and
+  // house number are deliberately excluded.
+  function localityString(addr){
+    return [
+      addr.city, addr.town, addr.village, addr.hamlet, addr.suburb,
+      addr.municipality, addr.county, addr.state_district, addr.region
+    ].filter(Boolean).join(', ').toLowerCase();
+  }
+
   // Collapse Saint / St / Ste and drop periods so "St Marys", "St. Marys" and
-  // "Saint Marys" all compare equal, in both the input and the exclusion list.
+  // "Saint Marys" all compare equal - the exclusion list and whatever spelling
+  // Nominatim returns are normalised through the same funnel before matching.
   function normSaint(s){
     return String(s||'').toLowerCase()
       .replace(/\bsaint\b/g,'st').replace(/\bste\b/g,'st')
       .replace(/\./g,'').replace(/\s+/g,' ').trim();
   }
 
-  function isExcluded(name){
-    var low=normSaint(name);
-    for(var i=0;i<EXCL.length;i++) if(low.indexOf(normSaint(EXCL[i]))!==-1) return true;
+  function isExcluded(addr){
+    var loc = normSaint(localityString(addr));
+    for(var i=0;i<EXCL.length;i++) if(loc.indexOf(normSaint(EXCL[i]))!==-1) return true;
     return false;
+  }
+
+  // Did a town-alone lookup land on the town itself? Nominatim answers
+  // "3 London, Ontario" with 3 London STREET in Toronto - a house, not the
+  // city - so a town result is only trusted when it has no street component
+  // and names the town.
+  function landsOnTown(result, town){
+    var a = result.address || {};
+    if(a.house_number || a.road) return false;
+    var t = normSaint(town);
+    if(normSaint((result.display_name||'').split(',')[0]) === t) return true;
+    return [a.city, a.town, a.village, a.hamlet, a.municipality].some(function(v){ return normSaint(v) === t; });
+  }
+  function inArea(result){
+    return pip([parseFloat(result.lon), parseFloat(result.lat)], POLY) && !isExcluded(result.address || {});
+  }
+  function fsaOf(pc){ return String(pc||'').replace(/\s/g,'').slice(0,3).toUpperCase(); }
+
+  // Parse the freeform input into street / city / postal code so the
+  // structured Nominatim endpoint can be used. Locks the city so the
+  // geocoder cannot wander to a same-named town elsewhere in Ontario.
+  function parseAddress(raw){
+    var input = raw.trim().replace(/\s+/g,' ');
+    var postalMatch = input.match(/[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d/);
+    var postalcode = '';
+    if(postalMatch){
+      var pc = postalMatch[0].toUpperCase().replace(/\s/g,'');
+      postalcode = pc.slice(0,3)+' '+pc.slice(3);
+    }
+    var rem = postalMatch ? input.replace(postalMatch[0],'') : input;
+    rem = rem.replace(/\b(ontario|canada)\b\.?/gi,'')
+             .replace(/(^|[\s,])on\b\.?/gi,'$1')
+             .replace(/,\s*,/g,',')
+             .replace(/\s+/g,' ')
+             .replace(/,\s*$/,'')
+             .trim();
+
+    var street='', city='';
+    var parts = rem.split(',').map(function(p){return p.trim();}).filter(Boolean);
+    if(parts.length>=2){
+      street = parts[0];
+      city = parts[parts.length-1];
+    } else {
+      // No commas: treat the last token as the city, the rest as the street.
+      var tokens = rem.split(' ').filter(Boolean);
+      if(tokens.length>=3){
+        city = tokens.pop();
+        street = tokens.join(' ');
+      } else {
+        street = rem;
+      }
+    }
+    return { street: street, city: city, postalcode: postalcode };
+  }
+
+  var NOMINATIM = 'https://nominatim.openstreetmap.org/search?';
+  var FETCH_OPTS = { headers: { 'Accept-Language': 'en' } };
+
+  function structuredSearch(p, usePostal){
+    var params =
+      'format=jsonv2&addressdetails=1&limit=1&countrycodes=ca' +
+      '&street=' + encodeURIComponent(p.street) +
+      '&city=' + encodeURIComponent(p.city) +
+      '&state=' + encodeURIComponent('Ontario') +
+      '&country=' + encodeURIComponent('Canada');
+    if(usePostal && p.postalcode) params += '&postalcode=' + encodeURIComponent(p.postalcode);
+    return fetch(NOMINATIM + params, FETCH_OPTS).then(function(r){ return r.json(); });
+  }
+
+  function freeformSearch(raw){
+    var q = raw;
+    if(!/ontario|,\s*on\b|canada/i.test(q)) q += ', Ontario, Canada';
+    var params = 'format=jsonv2&addressdetails=1&limit=1&countrycodes=ca&q=' + encodeURIComponent(q);
+    return fetch(NOMINATIM + params, FETCH_OPTS).then(function(r){ return r.json(); });
+  }
+
+  // Result must resolve to an actual street or building, not a settlement.
+  // A geocode that lands on the village of Paisley has no road component and
+  // fails this check instead of triggering a false OUTSIDE JURISDICTION.
+  function isAddressLevel(result){
+    var a = result.address || {};
+    return !!(a.house_number || a.road);
+  }
+
+  // The typed city is matched against the result under EVERY spelling
+  // variant, so "St Thomas" accepts a geocode that says "Saint Thomas".
+  function cityMatches(result, typedCityVariants){
+    if(!typedCityVariants || !typedCityVariants.length) return true;
+    var a = result.address || {};
+    var resultCities = [a.city, a.town, a.village, a.hamlet, a.municipality]
+      .filter(Boolean).map(function(c){ return c.toLowerCase(); });
+    if(!resultCities.length) return true;
+    for(var v=0;v<typedCityVariants.length;v++){
+      var typed = typedCityVariants[v].toLowerCase();
+      for(var i=0;i<resultCities.length;i++){
+        if(resultCities[i].indexOf(typed)!==-1 || typed.indexOf(resultCities[i])!==-1) return true;
+      }
+    }
+    return false;
+  }
+
+  // Nominatim is literal-minded: "Jane St" misses when OSM has "Jane Street",
+  // "St Thomas" misses "Saint Thomas". These build the spelling variants the
+  // lookup ladder walks. A lone trailing St is the street type, never Saint.
+  var TYPE_EXPAND={st:'Street',ave:'Avenue',av:'Avenue',rd:'Road',dr:'Drive',
+    blvd:'Boulevard',cres:'Crescent',crt:'Court',ct:'Court',pl:'Place',
+    ln:'Lane',pkwy:'Parkway',hwy:'Highway',sq:'Square',terr:'Terrace',
+    ter:'Terrace',cir:'Circle',gdns:'Gardens',pt:'Point'};
+  var TYPE_CONTRACT={street:'St',avenue:'Ave',road:'Rd',drive:'Dr',
+    boulevard:'Blvd',crescent:'Cres',court:'Crt',place:'Pl',lane:'Ln',
+    parkway:'Pkwy',highway:'Hwy',square:'Sq',terrace:'Terr',circle:'Cir',
+    gardens:'Gdns',point:'Pt'};
+  function saintForms(s){
+    var w=s.split(' '), f=w[0].toLowerCase().replace(/\.$/,''), forms=[s];
+    if((f==='st'||f==='ste')&&w.length>1) forms.push('Saint '+w.slice(1).join(' '));
+    if(f==='saint'&&w.length>1) forms.push('St '+w.slice(1).join(' '));
+    return forms;
+  }
+  function streetVariants(name){
+    var seen={},out=[];
+    function add(v){v=v.replace(/\s+/g,' ').trim();var k=v.toLowerCase();
+      if(v&&!seen[k]){seen[k]=1;out.push(v);}}
+    saintForms(name).forEach(function(v){
+      add(v);
+      var w=v.split(' ');
+      if(w.length>1){
+        var last=w[w.length-1].toLowerCase().replace(/\.$/,'');
+        if(TYPE_EXPAND[last]) add(w.slice(0,-1).join(' ')+' '+TYPE_EXPAND[last]);
+        if(TYPE_CONTRACT[last]) add(w.slice(0,-1).join(' ')+' '+TYPE_CONTRACT[last]);
+      }
+    });
+    return out;
+  }
+  function cityVariants(c){
+    var seen={},out=[];
+    saintForms(c).forEach(function(v){var k=v.toLowerCase();
+      if(!seen[k]){seen[k]=1;out.push(v);}});
+    return out;
+  }
+
+  function showEligible(box, url){
+    box.className='status eligible';
+    box.innerHTML=
+      '<div class="status-header"><div class="status-icon">&#9989;</div><div class="status-title">Address Verified</div></div>'+
+      '<div class="status-body">Your address is within <strong>Local 120\'s jurisdiction</strong>. You may proceed to the application form.</div>'+
+      '<a class="btn-proceed" href="'+url+'" target="_blank">PROCEED TO APPLICATION &#8594;</a>'+
+      '<div class="status-note">Your address on the application must match your Driver\'s Licence exactly.</div>';
   }
 
   function showIneligible(box){
@@ -377,17 +568,41 @@
 
   // Provisional pass: the exact street/postal could not be located (e.g. a new
   // subdivision not yet on the map), but the TOWN is within our jurisdiction.
-  // Let the applicant proceed; residency is verified against the Driver's
-  // Licence at the application stage. Amber, never the red EXIT screen.
-  function showProvisional(box, url){
+  // Let the applicant proceed; staff will verify the exact address against the
+  // Driver's Licence. Amber, never the red EXIT screen.
+  // With conflict=true the street DID geocode but landed outside the area
+  // while the town or postal code says otherwise: the lookup is not trusted,
+  // the applicant proceeds, and staff make the call from the licence.
+  function showProvisional(box, url, conflict){
     box.className='status eligible';
     box.style.borderLeft='6px solid #d99a00';
+    var title = conflict ? 'Address Needs Staff Verification' : 'Your Town Is In Our Area';
+    var body = conflict
+      ? 'We couldn\'t confirm your address automatically: the map placed your street outside our area, but your town or postal code says otherwise. '
+      : 'Your town is within <strong>Local 120\'s jurisdiction</strong>, but we couldn\'t confirm your exact street address automatically (this is common for newer addresses). ';
     box.innerHTML=
-      '<div class="status-header"><div class="status-icon">&#9989;</div><div class="status-title">Your Town Is In Our Area</div></div>'+
-      '<div class="status-body">Your town is within <strong>Local 120\'s jurisdiction</strong>, but we couldn\'t confirm your exact street address automatically (this is common for newer addresses). '+
-      '<strong>You may join the waitlist.</strong> Your exact address is verified when applications open.</div>'+
-      '<a class="btn-proceed" href="'+url+'" target="_blank">JOIN THE WAITLIST &#8594;</a>'+
-      '<div class="status-note">When applications open, you will complete a second address verification against your Driver\'s Licence.</div>';
+      '<div class="status-header"><div class="status-icon">&#9989;</div><div class="status-title">'+title+'</div></div>'+
+      '<div class="status-body">'+body+
+      '<strong>You may proceed.</strong> Training Centre staff will verify your address against your Driver\'s Licence.</div>'+
+      '<a class="btn-proceed" href="'+url+'" target="_blank">PROCEED TO APPLICATION &#8594;</a>'+
+      '<div class="status-note">Your address on the application must match your Driver\'s Licence exactly.</div>';
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // Amber retry state - a failed or ambiguous geocode is NOT the same as
+  // being outside jurisdiction and never shows the red EXIT screen.
+  function showRetry(box, message, foundName){
+    box.className='status error';
+    var html = message +
+      '<br>Include your full street name with street type (Ave, St, Cres), city, and postal code, then check again.';
+    if(foundName){
+      html += '<span class="found-line">Closest match found: '+escapeHtml(foundName)+'</span>';
+    }
+    html += '<br><span class="found-line">If the problem continues, contact the Training Centre at (519) 453-3330.</span>';
+    box.innerHTML = html;
   }
 
   function val(id){ return document.getElementById(id).value.trim(); }
@@ -405,11 +620,11 @@
     var lastName=val('lastName');
     var email=val('email');
     var phone=val('phone');
-    // unit is captured for the waitlist form (goes into address line 2) but is
-    // deliberately NOT sent to the geocoder — text like "Upper" / "Apt 2" is
+    // unit is captured for the application form (address line 2) but is
+    // deliberately NOT sent to the geocoder - text like "Upper" / "Apt 2" is
     // exactly what breaks the address lookup.
 
-    // Validate the fields the boundary check actually needs. Highlight any blanks.
+    // Validate the fields the boundary check needs; highlight any blanks.
     var required=[['streetNumber',streetNumber],['streetName',streetName],['city',city],['postal',postal]];
     var firstMissing=null;
     required.forEach(function(f){
@@ -418,23 +633,53 @@
       else { el.classList.remove('field-error'); }
     });
     if(firstMissing){
-      box.className='status error';
-      box.innerHTML='<strong>Please fill in every field.</strong><br>Street number, street name, city, and postal code are all required.';
+      showRetry(box, '<strong>Please fill in every address field.</strong>');
       firstMissing.focus();
       return;
     }
 
-    // Build a clean, geocoder-friendly query. Province is fixed to Ontario;
-    // unit is omitted. Postal code is normalised to the standard "A1A 1A1" form.
+    // Structured fields feed the geocoder directly - no freeform parsing needed.
     var postalClean=postal.toUpperCase().replace(/\s+/g,'');
     if(postalClean.length===6) postalClean=postalClean.slice(0,3)+' '+postalClean.slice(3);
-    var q=streetNumber+' '+streetName+', '+city+', Ontario '+postalClean+', Canada';
 
-    // Prefill the waitlist form (252584223276257) so the applicant does not
-    // retype anything. Shared by the eligible and provisional paths.
-    function buildWaitlistUrl(){
+    btn.disabled=true;
+    box.className='status checking';
+    box.innerHTML='<span class="spinner"></span> Verifying your address...';
+
+    // Lookup ladder. For the address exactly as typed, then for each
+    // street-type / Saint spelling variant: structured with postal code,
+    // structured without (OSM postal coverage in Canada is patchy), then a
+    // freeform fallback for the as-typed combo only. First hit that passes
+    // the quality gates wins; misses move down the ladder ~1.1s apart per
+    // Nominatim's rate policy. A found-but-unusable result (settlement-level,
+    // or a different city) is remembered so the retry message can show it if
+    // every rung misses.
+    var cvs = cityVariants(city);
+    var combos = [];
+    cvs.forEach(function(cv){
+      streetVariants(streetName).forEach(function(sv){
+        combos.push({ street: streetNumber+' '+sv, city: cv, postalcode: postalClean });
+      });
+    });
+    combos = combos.slice(0,4);
+    var attempts = [];
+    combos.forEach(function(p, idx){
+      attempts.push(function(){ return structuredSearch(p, true); });
+      attempts.push(function(){ return structuredSearch(p, false); });
+      if(idx === 0){
+        attempts.push(function(){
+          return freeformSearch(p.street+', '+p.city+', Ontario '+p.postalcode);
+        });
+      }
+    });
+
+    // Prefill the application form so the applicant does not retype anything:
+    // address -> visible Address field (qid 33), name/email/phone -> qids
+    // 11/12/13 (phoneNumber13 masked -> digits only). Empty optional fields
+    // are omitted from the URL. Shared by the verified and provisional paths.
+    function buildApplicationUrl(){
       var params = [
-        ['address[addr_line1]', streetNumber + ' ' + streetName],
+        ['address[addr_line1]', streetNumber+' '+streetName],
         ['address[city]', city],
         ['address[state]', 'Ontario'],
         ['address[postal]', postalClean],
@@ -444,73 +689,105 @@
       if(firstName) params.push(['name[first]', firstName]);
       if(lastName)  params.push(['name[last]', lastName]);
       if(email)     params.push(['email', email]);
-      if(phone)     params.push(['phoneNumber[full]', phone.replace(/\D/g,'')]);
-      return WAITLIST_URL + '?' + params.map(function(p){
+      if(phone)     params.push(['phoneNumber13[full]', phone.replace(/\D/g,'')]);
+      return APPLICATION_URL + '?' + params.map(function(p){
         return p[0] + '=' + encodeURIComponent(p[1]);
       }).join('&');
     }
 
-    function geo(query){
-      return fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q='+encodeURIComponent(query)+'&countrycodes=ca',
-        {headers:{'Accept-Language':'en','User-Agent':'LU120/1.0'}}).then(function(r){return r.json();});
-    }
-
-    // Exact address missed: fall back to the town alone. Town in-area -> proceed
-    // provisionally (verified against the licence later); town out -> a real
-    // decline; town will not resolve either -> the normal not-found message.
-    function townFallback(){
-      geo(city+', Ontario, Canada').then(function(data){
-        if(!data||!data.length){
-          box.className='status error';
-          box.innerHTML='<strong>Address not found.</strong><br>Please check your street name, city, and postal code. If the problem continues, contact the Training Centre at (519) 453-3330.';
-          btn.disabled=false; return;
-        }
-        var lat=parseFloat(data[0].lat), lng=parseFloat(data[0].lon);
-        if(pip([lng,lat],POLY) && !isExcluded(data[0].display_name)) showProvisional(box, buildWaitlistUrl());
-        else showIneligible(box);
+    // Out-of-area corroboration (2026-09-04): an out-of-area street hit
+    // declines nobody on its own. The TOWN alone and the POSTAL CODE alone
+    // must both say out of area; anything less is a provisional pass, never
+    // the red EXIT screen. Mirrors jurisdiction.verdict on the platform.
+    //   townOut: true / false / null (town lookup unusable)
+    //   hitFsa : the postal code area the street hit itself carried, if any
+    function settleOutOfArea(townOut, hitFsa){
+      var typedFsa = fsaOf(postalClean);
+      var postalOut = POSTAL_PREFIXES.indexOf(typedFsa.charAt(0)) === -1;
+      var postalAgrees = !!hitFsa && hitFsa === typedFsa;
+      function finish(out){
+        if(out) showIneligible(box);
+        else showProvisional(box, buildApplicationUrl(), true);
         btn.disabled=false;
-      }).catch(function(){
-        box.className='status error';
-        box.innerHTML='<strong>Something went wrong.</strong><br>Please check your internet connection and try again.';
-        btn.disabled=false;
-      });
-    }
-
-    btn.disabled=true;
-    box.className='status checking';
-    box.innerHTML='<span class="spinner"></span> Checking your address...';
-
-    geo(q)
-    .then(function(data){
-      if(!data||!data.length){ townFallback(); return; }
-      var lat=parseFloat(data[0].lat),
-          lng=parseFloat(data[0].lon),
-          displayName=data[0].display_name;
-
-      // Check polygon first, then run exclusion against the GEOCODED display
-      // name — never against the raw typed input. This prevents street names
-      // like "Palmerston Place" from triggering the "palmerston" exclusion.
-      var inPolygon = pip([lng,lat],POLY);
-      var excluded  = isExcluded(displayName);
-      var eligible  = inPolygon && !excluded;
-
-      if(eligible){
-        var url = buildWaitlistUrl();
-        box.className='status eligible';
-        box.innerHTML=
-          '<div class="status-header"><div class="status-icon">&#9989;</div><div class="status-title">Within Jurisdiction</div></div>'+
-          '<div class="status-body">Your address is within <strong>Local 120\'s jurisdiction</strong>. You are eligible to join our apprenticeship waitlist.</div>'+
-          '<a class="btn-proceed" href="'+url+'" target="_blank">JOIN THE WAITLIST &#8594;</a>'+
-          '<div class="status-note">Note: When applications open, you will complete a second address verification to confirm your residency at that time.</div>';
-      } else {
-        showIneligible(box);
       }
-    })
-    .catch(function(){
-      box.className='status error';
-      box.innerHTML='<strong>Something went wrong.</strong><br>Please check your internet connection and try again.';
-    })
-    .finally(function(){btn.disabled=false;});
+      if(townOut !== true){ finish(false); return; }
+      if(postalOut || postalAgrees){ finish(true); return; }
+      // town says out; the postal code has not weighed in: ask it alone
+      setTimeout(function(){
+        freeformSearch(postalClean).then(function(pd){
+          var p = pd && pd[0];
+          var known = !!(p && fsaOf((p.address||{}).postcode) === typedFsa);
+          finish(known && !inArea(p));
+        }).catch(function(){ finish(false); });
+      }, 1100);
+    }
+    function corroborate(result){
+      setTimeout(function(){
+        freeformSearch(city).then(function(data){
+          var t = data && data[0];
+          var townOut = (t && landsOnTown(t, city)) ? !inArea(t) : null;
+          settleOutOfArea(townOut, fsaOf((result.address||{}).postcode));
+        }).catch(function(){ settleOutOfArea(null, null); });
+      }, 1100);
+    }
+
+    var nearMiss = null;
+    function ladderFail(){
+      // The exact street/postal could not be geocoded. Before giving up, fall
+      // back to the TOWN alone: if the town itself is within jurisdiction, let
+      // the applicant proceed provisionally (staff verify against the licence);
+      // if the town is out of area, that is a real decline; if even the town
+      // will not resolve, show the normal retry.
+      function retry(){
+        if(nearMiss) showRetry(box, nearMiss.msg, nearMiss.name);
+        else showRetry(box, '<strong>Address not found.</strong>');
+        btn.disabled=false;
+      }
+      freeformSearch(city).then(function(data){
+        if(!data || !data.length || !landsOnTown(data[0], city)){ retry(); return; }
+        var t = data[0];
+        if(inArea(t)){
+          showProvisional(box, buildApplicationUrl());
+          btn.disabled=false;
+        } else {
+          // town out of area: the postal code must agree before the EXIT screen
+          settleOutOfArea(true, null);
+        }
+      }).catch(retry);
+    }
+    function tryNext(i){
+      if(i>=attempts.length){ ladderFail(); return; }
+      function next(){ setTimeout(function(){ tryNext(i+1); }, 1100); }
+      attempts[i]().then(function(data){
+        if(!data || !data.length){ next(); return; }
+        var result = data[0];
+        if(!isAddressLevel(result)){
+          nearMiss = nearMiss || {msg:'<strong>We couldn\'t pinpoint that street address.</strong>', name:result.display_name};
+          next(); return;
+        }
+        if(!cityMatches(result, cvs)){
+          nearMiss = nearMiss || {msg:'<strong>That address matched a different city than the one you entered.</strong>', name:result.display_name};
+          next(); return;
+        }
+        decide(result);
+      }).catch(next);
+    }
+    tryNext(0);
+
+    function decide(result){
+      var lat=parseFloat(result.lat),
+          lng=parseFloat(result.lon);
+
+      var inPolygon = pip([lng,lat],POLY);
+      var excluded  = isExcluded(result.address || {});
+
+      if(inPolygon && !excluded){
+        showEligible(box, buildApplicationUrl());
+        btn.disabled=false;
+      } else {
+        corroborate(result);   // town + postal code must agree before EXIT
+      }
+    }
   };
 
   // Enter from any field triggers the check.
@@ -521,7 +798,11 @@
   });
 })();
 </script>
-<!-- Cloudflare Web Analytics (cookieless RUM). Feeds the Command Center /api/stats "coverage" tile. -->
+<!-- Cloudflare Web Analytics (cookieless RUM). Feeds the Command Center /api/stats "coverage" tile.
+     LIVE since 2026-10-30: residencycheck.netlify.app is registered in Cloudflare Web Analytics and
+     this beacon ships on the live page. The live site deploys from the Waitlist-Checker Netlify repo
+     (NOT coverage-checker, despite the repo name) - keep this platform copy in sync with that repo.
+     The token below is a PUBLIC beacon token (it ships in page HTML to every visitor), not a secret. -->
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "50bb232205dd40278c91e0a4cf2c23bb"}'></script>
 </body>
 </html>
